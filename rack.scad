@@ -4,7 +4,7 @@ use <tessella/tess.scad>;
 z_fight = 0.01; // Small offset to prevent z-fighting in the model
 
 basin_diameter = 150; // mm
-basin_height = 10; // mm
+basin_height = 8; // mm
 basin_thickness = 2.4; // mm
 basin_grid_diameter = 5; // mm
 basin_grid_spacing = 1; // Spacing between hexagons
@@ -105,11 +105,10 @@ module basin(diameter, height, thickness, grid_diameter, grid_spacing) {
       circle(d=diameter + thickness * 2, $fn=6);
 
     // Cut out basin
-    translate([0, 0, height + z_fight + thickness])
-
+    translate([0, 0, height + z_fight])
       rotate([0, 180, 0])
-        linear_extrude(height=height, scale=2 / 3)
-          circle(d=diameter, $fn=6);
+        linear_extrude(height=height-thickness, scale=2 / 3)
+          circle(d=diameter - thickness * 2, $fn=6);
 
     // Cut out holes for drainage
     lvls = round((diameter * sin(60) - grid_diameter * 2) / ( (grid_diameter + grid_spacing * 2) * 2) - 1);

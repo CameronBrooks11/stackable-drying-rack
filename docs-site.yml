@@ -1,0 +1,3 @@
+title: stackable-drying-rack
+description: A modular drying rack in OpenSCAD, hexagonal basins that dovetail into trays and stack on rods
+models: rack.scad
